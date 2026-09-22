@@ -1,0 +1,678 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f1f5f9;
+  color: #172033;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  background: #f1f5f9;
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #0f172a;
+  color: white;
+  padding: 25px 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.sidebar h2 {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar button {
+  width: 100%;
+  display: block;
+  background: transparent;
+  color: #cbd5e1;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sidebar button:hover {
+  background: #1e293b;
+  color: white;
+  transform: translateX(3px);
+}
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.main {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.main header {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+}
+
+.main header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.main header p {
+  margin: 7px 0 0;
+  color: #64748b;
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+  margin-bottom: 25px;
+}
+
+.section h2 {
+  margin-top: 0;
+  color: #0f172a;
+  font-size: 24px;
+}
+
+.section h3 {
+  color: #1e293b;
+}
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.description {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* =====================================================
+   DASHBOARD CARDS
+===================================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(
+    4,
+    minmax(0, 1fr)
+  );
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card strong {
+  display: block;
+  font-size: 30px;
+  color: #2563eb;
+}
+
+/* =====================================================
+   SERVER GRID
+===================================================== */
+
+.servers {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    minmax(0, 1fr)
+  );
+  gap: 18px;
+  margin: 20px 0;
+}
+
+/* =====================================================
+   SERVER CARD
+===================================================== */
+
+.server-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.server-card:hover {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+}
+
+.server-card h3 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+.load {
+  font-size: 30px;
+  font-weight: bold;
+  color: #2563eb;
+  margin: 15px 0;
+}
+
+/* =====================================================
+   LOAD BAR
+===================================================== */
+
+.load-bar-background {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.load-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #7c3aed
+  );
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* =====================================================
+   FORM ELEMENTS
+===================================================== */
+
+label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #334155;
+}
+
+input,
+select {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: white;
+  color: #172033;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px
+    rgba(37, 99, 235, 0.1);
+}
+
+/* =====================================================
+   PRIMARY BUTTON
+===================================================== */
+
+.primary-button {
+  margin-top: 22px;
+  padding: 13px 22px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =====================================================
+   RESULT BOX
+===================================================== */
+
+.result-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #2563eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.result-box p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   CHART SECTION
+===================================================== */
+
+.chart-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  margin-top: 25px;
+  box-shadow: 0 3px 12px
+    rgba(15, 23, 42, 0.04);
+}
+
+.chart-section h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.chart-section p {
+  color: #64748b;
+  margin-top: 5px;
+}
+
+/* =====================================================
+   LIVE SIMULATION
+===================================================== */
+
+.live-simulation {
+  margin-top: 25px;
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.algorithm-info {
+  color: #475569;
+}
+
+/* =====================================================
+   FLOW
+===================================================== */
+
+.flow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.flow-box {
+  padding: 15px 22px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px
+    rgba(15, 23, 42, 0.05);
+}
+
+.load-balancer {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.arrow {
+  font-size: 25px;
+  color: #64748b;
+}
+
+/* =====================================================
+   CURRENT REQUEST
+===================================================== */
+
+.current-request {
+  text-align: center;
+  padding: 15px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+/* =====================================================
+   SIMULATION STATS
+===================================================== */
+
+.simulation-stats {
+  display: grid;
+  grid-template-columns: repeat(
+    4,
+    minmax(0, 1fr)
+  );
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.simulation-stats span {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* =====================================================
+   LIVE SERVERS
+===================================================== */
+
+.live-servers {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    minmax(0, 1fr)
+  );
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.live-server {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+}
+
+.live-server h4 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+.live-load {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #2563eb;
+}
+
+/* =====================================================
+   REQUEST LIST
+===================================================== */
+
+.request-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.request {
+  display: inline-block;
+  padding: 8px 11px;
+  border-radius: 7px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.request.rejected {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* =====================================================
+   COMPLETED MESSAGE
+===================================================== */
+
+.completed-message {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 25px;
+}
+
+.completed-message h3 {
+  color: #166534;
+  margin-top: 0;
+}
+
+.completed-message p {
+  margin: 9px 0;
+}
+
+/* =====================================================
+   RESULT BARS
+===================================================== */
+
+.result-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.bar {
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #7c3aed
+  );
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: width 0.4s ease;
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+td,
+th {
+  border-color: #e2e8f0 !important;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .servers {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    );
+  }
+
+  .live-servers {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    );
+  }
+
+  .simulation-stats {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    );
+  }
+}
+
+@media (max-width: 750px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    position: relative;
+    padding: 15px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 15px;
+  }
+
+  .sidebar button {
+    display: inline-block;
+    width: auto;
+    margin: 3px;
+  }
+
+  .app {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .cards,
+  .servers,
+  .live-servers,
+  .simulation-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .main header h1 {
+    font-size: 22px;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
+  .flow {
+    flex-direction: column;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
