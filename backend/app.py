@@ -26,6 +26,30 @@ DB_CONFIG = {
 
 def get_db_connection():
     return mysql.connector.connect(**DB_CONFIG)
+def init_database():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS simulation_history (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            algorithm VARCHAR(50),
+            total_requests INT,
+            accepted_requests INT,
+            rejected_requests INT,
+            rerouted_requests INT,
+            average_load FLOAT,
+            success_rate FLOAT,
+            response_time INT,
+            capacity INT,
+            failed_servers VARCHAR(100),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
 
 
 # =====================================================
@@ -610,6 +634,7 @@ def health():
 # =====================================================
 # START SERVER
 # =====================================================
+ init_database()
 
 if __name__ == "__main__":
     app.run(
