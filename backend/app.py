@@ -629,13 +629,10 @@ def health():
         "status": "success",
         "message": "Cloud Load Balancing Backend is running"
     })
-
-
 # =====================================================
 # START SERVER
 # =====================================================
- init_database()
-
+init_database()
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
