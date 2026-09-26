@@ -14,8 +14,12 @@ import {
 } from "recharts";
 
 import "./App.css";
+const API_URL = (
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:5000"
+).replace(/\/$/, "");
 
 const SERVER_COUNT = 3;
+
 
 function App() {
   const [page, setPage] = useState("Dashboard");
@@ -36,35 +40,36 @@ function App() {
   const [history, setHistory] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
   const [historyError, setHistoryError] = useState("");
+  
+const loadHistory = useCallback(async () => {
+  try {
+    setHistoryLoading(true);
+    setHistoryError("");
 
-  const loadHistory = useCallback(async () => {
-    try {
-      setHistoryLoading(true);
-      setHistoryError("");
+    const response = await fetch(
+      `${API_URL}/api/simulation-history`
+    );
 
-      const response = await fetch(
-        "http://127.0.0.1:5000/api/simulation-history"
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to load simulation history");
-      }
-
-      const data = await response.json();
-
-      if (Array.isArray(data)) {
-        setHistory(data);
-      } else {
-        throw new Error("Invalid history response");
-      }
-    } catch (error) {
-      console.error("History loading error:", error);
-      setHistoryError("Could not load MySQL history. Make sure Flask is running.");
-    } finally {
-      setHistoryLoading(false);
+    if (!response.ok) {
+      throw new Error("Failed to load simulation history");
     }
-  }, []);
 
+    const data = await response.json();
+
+    if (Array.isArray(data)) {
+      setHistory(data);
+    } else {
+      throw new Error("Invalid history response");
+    }
+  } catch (error) {
+    console.error("History loading error:", error);
+    setHistoryError(
+      "Could not load simulation history. Check the backend URL and make sure Flask is running."
+    );
+  } finally {
+    setHistoryLoading(false);
+  }
+}, []);
   useEffect(() => {
     loadHistory();
   }, [loadHistory]);
@@ -677,7 +682,7 @@ function Simulation({
     async function saveToBackend() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:5000/api/simulate",
+          `${API_URL}/api/simulate`,
           {
             method: "POST",
             headers: {
